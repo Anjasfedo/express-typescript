@@ -24,7 +24,7 @@ app.use(express.json()); // Configuring the app to parse JSON request bodies
 
 app.use("/api/author", authorRouter); // Mounting the authorRouter at the "/api/author" route
 
-app.use("/api/book", bookRouter);
+app.use("/api/book", bookRouter); // Mounting the bookRouter at the "/api/book" route
 
 app.listen(PORT, () => {
   console.log(`Server run on port http://localhost:${PORT}`); // Starting the Express server and logging the port on which it is running

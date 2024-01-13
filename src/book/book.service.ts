@@ -1,17 +1,19 @@
-import { Author } from "../author/author.service";
-import { db } from "../utils/db.server";
+import { Author } from "../author/author.service"; // Importing the Author type from the author.service module
+import { db } from "../utils/db.server"; // Importing the Prisma client instance from the db.server module
 
+// Type definition for the BookRead entity
 type BookRead = {
   ID: number;
   title: string;
   isFiction: boolean;
   datePublish: Date;
-  author: Author;
-  // authorID: number;
+  author: Author; // Embedding Author type to represent the associated author details
+  // authorID: number; // Not used, as we provide the complete author details in the 'author' property
   createdAt: Date;
   updatedAt: Date;
 };
 
+// Type definition for the BookWrite entity
 type BookWrite = {
   title: string;
   isFiction: boolean;
@@ -19,6 +21,7 @@ type BookWrite = {
   authorID: number;
 };
 
+// Function to retrieve all books from the database with associated author details
 export const getBooks = async (): Promise<BookRead[]> => {
   return db.book.findMany({
     select: {
@@ -35,13 +38,13 @@ export const getBooks = async (): Promise<BookRead[]> => {
           updatedAt: true,
         },
       },
-      // authorID: true,
       createdAt: true,
       updatedAt: true,
     },
   });
 };
 
+// Function to retrieve a specific book by ID from the database with associated author details
 export const getBookById = async (ID: number): Promise<BookRead | null> => {
   return db.book.findUnique({
     where: {
@@ -67,7 +70,8 @@ export const getBookById = async (ID: number): Promise<BookRead | null> => {
   });
 };
 
-const createBook = async (book: BookWrite): Promise<BookRead> => {
+// Function to create a new book in the database
+export const createBook = async (book: BookWrite): Promise<BookRead> => {
   const { title, authorID, isFiction, datePublish } = book;
 
   const parseDate: Date = new Date(datePublish);
@@ -99,6 +103,7 @@ const createBook = async (book: BookWrite): Promise<BookRead> => {
   });
 };
 
+// Function to update an existing book by ID in the database
 export const updateBookById = async (
   ID: number,
   book: BookWrite
@@ -135,7 +140,8 @@ export const updateBookById = async (
   });
 };
 
-const deleteBookById = async (ID: number): Promise<void> => {
+// Function to delete a book by ID from the database
+export const deleteBookById = async (ID: number): Promise<void> => {
   await db.book.delete({
     where: {
       ID,
