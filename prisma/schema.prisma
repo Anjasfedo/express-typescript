@@ -9,3 +9,23 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Author {
+  ID        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+  firstName String
+  lastName  String
+  Book      Book[]
+}
+
+model Book {
+  ID          Int      @id @default(autoincrement())
+  createAt    DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  isFiction   Boolean
+  datePublish DateTime
+  author      Author   @relation(fields: [authorID], references: [ID], onDelete: Cascade)
+  authorID    Int
+}
