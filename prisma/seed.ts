@@ -11,47 +11,6 @@ type Book = {
   datePublish: Date;
 };
 
-async function seed() {
-  await Promise.all(
-    getAuthor().map((author) => {
-      return db.author.create({
-        data: {
-          firstName: author.firstName,
-          lastName: author.lastName,
-        },
-      });
-    })
-  );
-
-  const author = await db.author.findFirst({
-    where: {
-      firstName: "Anjas",
-    },
-  });
-
-  if (!author) {
-    console.error("Author not found");
-    return;
-  }
-
-  await Promise.all(
-    getBook().map((book) => {
-      const { title, isFiction, datePublish } = book;
-
-      return db.book.create({
-        data: {
-          title,
-          isFiction,
-          datePublish,
-          authorID: author.ID,
-        },
-      });
-    })
-  );
-}
-
-seed();
-
 const getAuthor = (): Array<Author> => {
   return [
     {
@@ -88,3 +47,44 @@ const getBook = (): Array<Book> => {
     },
   ];
 };
+
+const seed = async () => {
+  await Promise.all(
+    getAuthor().map((author) => {
+      return db.author.create({
+        data: {
+          firstName: author.firstName,
+          lastName: author.lastName,
+        },
+      });
+    })
+  );
+
+  const author = await db.author.findFirst({
+    where: {
+      firstName: "Anjas",
+    },
+  });
+
+  if (!author) {
+    console.error("Author not found");
+    return;
+  }
+
+  await Promise.all(
+    getBook().map((book) => {
+      const { title, isFiction, datePublish } = book;
+
+      return db.book.create({
+        data: {
+          title,
+          isFiction,
+          datePublish,
+          authorID: author.ID,
+        },
+      });
+    })
+  );
+};
+
+seed();
