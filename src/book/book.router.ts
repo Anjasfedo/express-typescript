@@ -63,7 +63,7 @@ bookRouter.post(
 bookRouter.put(
   "/:id",
   body("title").isString(),
-  body("isFiction").isBoolean, // There is a typo here, it should be body("isFiction").isBoolean()
+  body("isFiction").isBoolean(),
   body("datePublish").isDate().isDate(),
   body("authorID").isInt(),
   async (request: Request, response: Response) => {

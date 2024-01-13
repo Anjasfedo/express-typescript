@@ -110,6 +110,8 @@ export const updateBookById = async (
 ): Promise<BookRead> => {
   const { title, isFiction, datePublish, authorID } = book;
 
+  const parseDate: Date = new Date(datePublish);
+
   return db.book.update({
     where: {
       ID,
@@ -117,7 +119,7 @@ export const updateBookById = async (
     data: {
       title,
       isFiction,
-      datePublish,
+      datePublish: parseDate,
       authorID,
     },
     select: {
