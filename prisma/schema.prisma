@@ -1,11 +1,35 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// Generator block specifying that the Prisma client should be generated using the prisma-client-js provider
 generator client {
   provider = "prisma-client-js"
 }
 
+// Datasource block specifying the database configuration, in this case using SQLite and getting the URL from the DATABASE_URL environment variable
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
+}
+
+// Model definition for the Author entity
+model Author {
+  ID        Int      @id @default(autoincrement()) // Unique identifier for the author, auto-incremented
+  createdAt DateTime @default(now()) // Timestamp indicating the creation time of the author
+  updateAt  DateTime @updatedAt // Timestamp indicating the last update time of the author
+  firstName String // First name of the author
+  lastName  String // Last name of the author
+  Book      Book[] // Relation to the Book model, indicating that an author can have multiple books
+}
+
+// Model definition for the Book entity
+model Book {
+  ID          Int      @id @default(autoincrement()) // Unique identifier for the book, auto-incremented
+  createAt    DateTime @default(now()) // Timestamp indicating the creation time of the book
+  updatedAt   DateTime @updatedAt // Timestamp indicating the last update time of the book
+  title       String // Title of the book
+  isFiction   Boolean // Boolean indicating whether the book is fiction or not
+  datePublish DateTime // Date of publication of the book
+  author      Author   @relation(fields: [authorID], references: [ID], onDelete: Cascade) // Relation to the Author model, indicating the author of the book
+  authorID    Int // Foreign key referencing the ID field in the Author model
 }

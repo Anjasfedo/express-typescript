@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "20e0b29e-ad3c-419d-864b-7f30cd06035d",
+		"name": "Express-Typescript-Author",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29831214"
+	},
+	"item": [
+		{
+			"name": "GetAuthors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/api/author/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"author",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAuthorById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/api/author/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"author",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createAuthor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Anjasfedo\",\r\n    \"lastName\": \"Gantenk\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/api/author/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"author",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateAuthorById",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Anjasfedo123\",\r\n    \"lastName\": \"Gantenk123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/api/author/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"author",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteAuthorById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/api/author/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"author",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}

@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "prisma": {
+    "seed": "node --require esbuild-register prisma/seed.ts"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon ./src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +27,7 @@
     "esbuild-register": "^3.5.0",
     "nodemon": "^3.0.2",
     "prisma": "^5.8.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
 }
