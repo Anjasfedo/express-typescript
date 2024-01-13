@@ -50,7 +50,7 @@ authorRouter.post(
 
       const newAuthor = await AuthorService.createAuthor(author); // Calling the createAuthor function from AuthorService
 
-      return response.status(200).json(newAuthor); // Sending a JSON response with the new author and a 200 status code
+      return response.status(201).json(newAuthor); // Sending a JSON response with the new author and a 200 status code
     } catch (error: any) {
       return response.status(500).json(error.message); // Handling errors and sending a JSON response with a 500 status code
     }
@@ -76,7 +76,7 @@ authorRouter.put(
 
       const updatedAuthor = await AuthorService.updateAuthorById(ID, author); // Calling the updateAuthorById function from AuthorService
 
-      return response.status(200).json(updatedAuthor); // Sending a JSON response with the updated author and a 200 status code
+      return response.status(201).json(updatedAuthor); // Sending a JSON response with the updated author and a 200 status code
     } catch (error: any) {
       return response.status(500).json(error.message); // Handling errors and sending a JSON response with a 500 status code
     }
