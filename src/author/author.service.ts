@@ -1,23 +1,23 @@
 import { db } from "../utils/db.server"; // Importing the Prisma client instance from the db.server module
 
 // Type definition for the Author entity
-type Author = {
+export type Author = {
   ID: number;
   firstName: string;
   lastName: string;
   createdAt: Date;
-  updateAt: Date;
+  updatedAt: Date;
 };
 
 // Function to retrieve all authors from the database
 export const getAuthors = async (): Promise<Author[]> => {
-  return db.author.findMany({
-    select: {
+return db.author.findMany({
+  select: {
       ID: true,
       firstName: true,
       lastName: true,
       createdAt: true,
-      updateAt: true,
+      updatedAt: true,
     },
   });
 };
@@ -33,7 +33,7 @@ export const getAuthorById = async (ID: number): Promise<Author | null> => {
       firstName: true,
       lastName: true,
       createdAt: true,
-      updateAt: true,
+      updatedAt: true,
     },
   });
 };
@@ -54,7 +54,7 @@ export const createAuthor = async (
       firstName: true,
       lastName: true,
       createdAt: true,
-      updateAt: true,
+      updatedAt: true,
     },
   });
 };
@@ -79,7 +79,7 @@ export const updateAuthorById = async (
       firstName: true,
       lastName: true,
       createdAt: true,
-      updateAt: true,
+      updatedAt: true,
     },
   });
 };

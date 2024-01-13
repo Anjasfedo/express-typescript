@@ -16,7 +16,7 @@ datasource db {
 model Author {
   ID        Int      @id @default(autoincrement()) // Unique identifier for the author, auto-incremented
   createdAt DateTime @default(now()) // Timestamp indicating the creation time of the author
-  updateAt  DateTime @updatedAt // Timestamp indicating the last update time of the author
+  updatedAt  DateTime @updatedAt // Timestamp indicating the last update time of the author
   firstName String // First name of the author
   lastName  String // Last name of the author
   Book      Book[] // Relation to the Book model, indicating that an author can have multiple books
@@ -25,7 +25,7 @@ model Author {
 // Model definition for the Book entity
 model Book {
   ID          Int      @id @default(autoincrement()) // Unique identifier for the book, auto-incremented
-  createAt    DateTime @default(now()) // Timestamp indicating the creation time of the book
+  createdAt    DateTime @default(now()) // Timestamp indicating the creation time of the book
   updatedAt   DateTime @updatedAt // Timestamp indicating the last update time of the book
   title       String // Title of the book
   isFiction   Boolean // Boolean indicating whether the book is fiction or not
